@@ -17,7 +17,6 @@ toastr.options = {
 };
 
 // Login API Call
-
 $("#btnLogin").click(function (e) {
   var email = $("#email-field").val();
   var password = $("#password-field").val();
