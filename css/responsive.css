@@ -1,0 +1,198 @@
+ @media (min-width:767px) and (max-width:1293px) {
+.banner-details-left {
+	bottom: 3%;
+}
+.video-block {
+	top: -14px;
+}
+}
+ @media (min-width:767px) and (max-width:1200px) {
+.signup-area-right {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.btn-signup-right {
+	padding: 12px 0px;
+	font-size: 10px;
+	width: 48%;
+}
+.btn-signup-right img {
+	right: 1px;
+}
+}
+ @media (min-width:200px) and (max-width:1100px) {
+.paddin-left-right-container {
+	padding-left: 2%;
+	padding-right: 2%;
+}
+.video-block {
+	top: -40px;
+}
+.banner-details-left {
+	bottom: -1%;
+}
+}
+ @media (min-width:767px) and (max-width:1030px) {
+.btn-signup-right {
+	width: 100%;
+	margin-bottom: 5px;
+}
+.input-login-area {
+	width: 100%;
+	margin-left: 0%;
+}
+.signup-area-right {
+	padding-left: 14px;
+	padding-right: 14px;
+}
+.landing-left-block h1 {
+	font-size: 37px;
+}
+.landing-left-block h3 {
+	font-size: 26px;
+}
+#msform fieldset {
+	padding: 0px 6px;
+}
+.mobile-country-code {
+	background-position-x: 33px !important;
+}
+}
+ @media (min-width:200px) and (max-width:1016px) {
+.banner-details-left {
+	bottom: -12%;
+}
+.banner-details-left p {
+	width: 89%;
+}
+.video-block {
+	right: 13%;
+}
+.select-appearance2 {
+	width: 22%;
+}
+.mobile-country-code {
+	padding-left: 0px;
+	font-size: 10.5px;
+}
+}
+ @media (min-width:200px) and (max-width:929px) {
+.banner-details-left {
+	bottom: -24%;
+}
+.video-block {
+	right: 6%;
+}
+}
+ @media (min-width:200px) and (max-width:805px) {
+.banner-details-left {
+	bottom: -34%;
+}
+.h5-confirm-mail {
+	line-height: 23px;
+}
+}
+ @media (min-width:200px) and (max-width:767px) {
+.video-block {
+	right: 16%;
+}
+.banner-details-left {
+	bottom: 2%;
+}
+}
+ @media (min-width:200px) and (max-width:767px) {
+.banner-details-left {
+	bottom: -7%;
+}
+.nav-header-custom .navbar-toggler {
+	color: rgba(0,0,0,.5);
+	border-color: #1a8204;
+	background: #30d20e;
+	padding: 3px 9px;
+}
+.nav-header-custom .navbar-collapse {
+	background: #fff;
+	border: solid 1px #5bba47;
+	padding-top: 10px;
+	margin-top: 6px;
+	border-radius: 6px;
+}
+.margin-right-login {
+	margin-left: 21px;
+	padding-bottom: 20px;
+	margin-top: 10px;
+}
+.margin-right-login button {
+	padding: 3px 18px;
+	width: 92%;
+}
+.dropdown-menu-custom.show {
+	border-radius: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	background: #f7fbfa;
+}
+}
+ @media (min-width:200px) and (max-width:640px) {
+.landing-left-block h3 {
+	text-align: center;
+}
+.landing-left-block h1 {
+	text-align: center;
+}
+.banner-img-left {
+	width: 100%;
+}
+.video-block {
+	right: 16%;
+	top: 0px;
+	position: relative;
+	width: 100%;
+	margin-top: 20px;
+	right: inherit;
+	float: left;
+	height: 200px;
+}
+.video-block img {
+	border-radius: 0px;
+}
+.banner-details-left {
+	width: 82%;
+	position: inherit;
+	right: inherit;
+	margin: 30px auto;
+}
+span.video-span {
+	left: 0px;
+	bottom: 59px;
+	text-align: center;
+}
+.landing-left-block h1 {
+	font-size: 32px;
+}
+.landing-left-block h3 {
+	font-size: 26px;
+}
+#msform fieldset {
+	padding: 0px 10px;
+}
+.h5-latest {
+	font-size: 13px;
+	line-height: 26px;
+}
+}
+ @media (min-width:200px) and (max-width:400px) {
+.signup-area-right {
+	padding-left: 16px;
+	padding-right: 16px;
+}
+.btn-signup-right {
+	font-size: 10px;
+	width: 48%;
+	padding: 12px 0px;
+}
+.input-login-area {
+	width: 100%;
+	margin-left: 0%;
+}
+}

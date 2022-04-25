@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Therapy Report</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2"> <a href=""><span class="back-span-top"><i
+                                                    class="fas fa-arrow-left"></i></span></a>
+                                        <h5 class="select-suv-h5 mb-4">Therapy
+                                            <label>Report</label>
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 pt-2 text-right display-none-all">
+                                        <button class="btn-library mr-1"> <i class="fas fa-download"></i><span
+                                                class="pl-2">Download
+                                                Report</span> </button>
+                                        <button class="btn-library ml-2"> <i class="fas fa-share-alt"></i><span
+                                                class="pl-2">Share
+                                                Report</span> </button>
+                                    </div>
+                                </div>
+                                <div class="row pt-2 mr-0 ml-0">
+                                    <div class="col-md-8 col-sm-12 pl-0 width-custom-8">
+
+                                        <div class="therapy-chat-all">
+                                            <div class="top-chart-area pt-2">
+                                                <h5 class="float-left">Therapies Survey</h5>
+                                                <ul class="list-inline list-group float-left flex-row-reverse">
+                                                    <li><span class="span-the-color"></span>New Therapies</li>
+                                                    <li><span class="span-going-color"></span>On Going Therapies</li>
+                                                    <li><span class="span-coml-color"></span>Completed</li>
+                                                </ul>
+                                                <div
+                                                    class="col-auto input-login-area calender-date float-right therapy-date">
+                                                    <div class="input-group mb-2">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text pl-2"><i
+                                                                    class="country-icon border-right-0"><img
+                                                                        src="images/calendar2.png" alt=""></i></div>
+                                                        </div>
+                                                        <input class="form-control" type="text" id="chartdate"
+                                                            name="chartdate" placeholder="December">
+                                                    </div>
+                                                </div>
+
+                                                <div id="therapy-chart-top" style="height:209px; width: 100%;"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="therapy-chat-all mt-3 pb-0">
+                                            <div class="client-record-table pt-2">
+                                                <h3>ADMIN PATIENTS LIST</h3>
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>NO</th>
+                                                            <th>NAME</th>
+                                                            <th>ASSIGNED DOCTOR</th>
+                                                            <th class="display-none-all">DATE OF THERAPY</th>
+                                                            <th class="display-none-all">Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-12 pl-0 width-custom-4">
+
+                                        <div class="therapy-chat-all pt-3 pl-2 pr-2 pb-0">
+                                            <div class="client-record-table client-record-table-recent p-0">
+                                                <h3 class="pl-2 mb-3">RECENT VISITS</h3>
+                                                <table class="visits-table item-list-right">
+                                                </table>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="therapy-chat-all p-4 mt-4">
+                                            <div class="chart-rigt-top">
+                                                <div class="chart-rigt-top-left text-left float-left">
+                                                    <h3 class="color-red-all" id="appointments"></h3>
+                                                    <p>APPOINTMENT</p>
+                                                </div>
+
+                                                <div class="chart-rigt-top-right text-right float-right">
+                                                    <h3 class="color-red-all"></h3>
+                                                </div>
+
+                                                <div class="chart-main-area">
+                                                    <img src="images/grap-1.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="therapy-chat-all p-4 mt-3">
+                                            <div class="chart-rigt-top">
+                                                <div class="chart-rigt-top-left text-left float-left">
+                                                    <h3 class="color-green-all" id="patients"></h3>
+                                                    <p>NEW PATIENTS</p>
+                                                </div>
+
+                                                <div class="chart-rigt-top-right text-right float-right">
+                                                    <h3 class="color-green-all"></h3>
+                                                </div>
+
+                                                <div class="chart-main-area">
+                                                    <img src="images/grap-2.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end container-fluid -->
+    </main>
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/bootstrap-datepicker.min.js'></script>
+    <script src='https://code.highcharts.com/highcharts.js'></script>
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+                document.location.href = url;
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        $(document).ready(function () {
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                } else {
+                    getPatientsList();
+                    getRecentVisits();
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+
+        function getPatientsList() {
+            var patientsPayload = {
+                Data: {
+                    lvl: 9
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: patientsPayload,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code == "00") {
+                    var a = response.data['bookings'];
+                    var table = $('.table');
+                    $("#appointments").text(a.length);
+                    for (var i = 0; i < a.length; i++) {
+                        table.append(`<tbody id='table-list'>
+                            <tr>
+                                <td>`+ (i + 1) + `</td>
+                                <td>`+ a[i]['customerName'] + `</td>
+                                <td><span class="name-td-table">` + a[i]['therapistName'] + `</span></td>
+                                <td class="display-none-all">` + a[i]['bookingDate'] + `</td>
+                                <td class="display-none-all"><span
+                                        class="therapy-td-table">` + a[i]['bookingStatus'] + `</span></td>
+                            </tr>
+                        </tbody>`);
+                    }
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        function getRecentVisits() {
+            var visitsPayload = {
+                Data: {
+                    lvl: 10
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: visitsPayload,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code == "00") {
+                    var a = response.data['bookings'];
+                    var table = $('.visits-table');
+                    $("#patients").text(a.length);
+                    for (var i = 0; i < a.length; i++) {
+                        var therapistPicPath = a[i]['therapistEmail'];
+                        if (doesFileExist("services/images/profile_pictures/" + therapistPicPath + ".png")) {
+                            therapistPicPath = "user-avatar";
+                        }
+                        table.append(`<tbody id='table-list'>
+                            <tr>
+                                <td class="align-middle width-table-report">
+                                    <div class="recent-table-dtae">
+                                        <span>` + a[i]['startTime'] + `</span>
+                                        <span>` + a[i]['bookingDate'] + `</span>
+                                    </div>
+                                </td>
+                                <td class="td-recent-table-profile align-middle">
+                                    <div class="recent-table-profile">
+                                        <div class="recent-table-profile-left">
+                                            <img src=services/images/profile_pictures/${therapistPicPath}.png alt="">
+                                        </div>
+                                        <div class="recent-table-profile-right">
+                                            <h3>` + a[i]['therapistName'] + `</h3>
+                                            <p>` + a[i]['customerName'] + `</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-middle display-none-all">
+                                    <span class="pass-table-right">` + a[i]['bookingStatus'] + `</span>
+                                </td>
+                            </tr>
+                        </tbody>`);
+                    }
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        function doesFileExist(urlToFile) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', urlToFile, false);
+            xhr.send();
+
+            return xhr.status === 404;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>CV Resume Dasboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+
+    <!-- Toastr CSS -->
+    <link href="css/toastr.css" rel="stylesheet" />
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+                                <!-- col-md-12 -->
+                                <div class="col-md-12 p-0">
+                                    <div class="alert alert-primary profile-status-veriried">
+                                        <p>Profile Status: <span>VERIFIED</span></p>
+                                    </div>
+                                </div>
+                                <!-- col-md-12 -->
+
+                                <div class="row pt-2 mr-0 ml-0">
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+
+                                            <img class="upload-pic-main img-margin-auto" id="profile-picture" src=""
+                                                alt="">
+                                            <label
+                                                class="text-center pt-1 mt-2 border-bottom full-width pb-2 label-propic">Profile
+                                                Picture</label>
+                                            <p class="p-profile-body text-center pb-5">Profile Picture&nbsp;<span
+                                                    class="color-success">
+                                                    Successfully&nbsp;</span>added.
+                                            </p>
+                                            <button
+                                                class="alert alert-success float-right btn-complete-profile change-btn-color"
+                                                data-toggle="modal" data-target="#uploadProfilePic">Change</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <div class="profile-block-header"> <i class="user-icon-block"><img
+                                                        src="images/usercv.png" alt=""></i>
+                                                <div class="profile-block-user-title">
+                                                    <p>CV / Resume</p>
+                                                </div>
+                                            </div>
+                                            <p class="p-profile-body">Add your&nbsp;<span>CV / Resume Details.</span>
+                                            </p>
+                                            <button
+                                                class="alert alert-success float-right btn-complete-profile active-color-btn"
+                                                data-toggle="modal" data-target="#uploadCV">Add</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <div class="profile-block-header"> <i class="user-icon-block"><img
+                                                        src="images/usertie.png" alt=""></i>
+                                                <div class="profile-block-user-title">
+                                                    <p>Nominate Supervisor</p>
+                                                </div>
+                                            </div>
+                                            <p class="p-profile-body">Nominate a&nbsp;<span>Supervisor</span>&nbsp;for
+                                                the therapy session.
+                                            </p>
+                                            <button class="alert alert-success float-right btn-complete-profile"
+                                                data-toggle="modal"
+                                                data-target="#profileCompletionFormTwo">Nominate</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <div class="profile-block-header"> <i class="user-icon-block"><img
+                                                        src="images/dbsuser.png" alt=""></i>
+                                                <div class="profile-block-user-title">
+                                                    <p>DBS Certificate Validation</p>
+                                                </div>
+                                            </div>
+                                            <p class="p-profile-body">Request a&nbsp;<span>DBS
+                                                    CertificateValidation.</span>
+                                            </p>
+                                            <button class="alert alert-success float-right btn-complete-profile"
+                                                data-toggle="modal" data-target="#profileCompletionFormTwo">Request
+                                                Validation</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <div class="profile-block-header"> <i class="user-icon-block"><img
+                                                        src="images/memuser.png" alt=""></i>
+                                                <div class="profile-block-user-title">
+                                                    <p>Membership</p>
+                                                </div>
+                                            </div>
+                                            <p class="p-profile-body">Request a&nbsp;<span>Professional Membership
+                                                    Validation</span>
+                                            </p>
+                                            <button class="alert alert-success float-right btn-complete-profile"
+                                                data-toggle="modal" data-target="#profileCompletionFormTwo">Request
+                                                Validation</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <div class="profile-block-header"> <i class="user-icon-block"><img
+                                                        src="images/memuser.png" alt=""></i>
+                                                <div class="profile-block-user-title">
+                                                    <p>Next Of Kin</p>
+                                                </div>
+                                            </div>
+                                            <p class="p-profile-body">Request a&nbsp;<span>Next of Kin</span>
+                                            </p>
+                                            <button class="alert alert-success float-right btn-complete-profile">Submit
+                                                Details</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end container-fluid -->
+    </main>
+    <!-------------------------------- modal all ---------------------------------------------------------------------------->
+    <!------------------- upload CV RESUME----------------------->
+    <div class="modal modal-position-custom fade" id="uploadCV" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-body">
+
+                    <button type="button" class="close close-custom2" data-dismiss="modal" aria-label="Close"> <i
+                            class="fas fa-arrow-left"></i> </button>
+
+                    <h5 class="text-center h5-modal-top-title">Upload <span>CV / Resume</span></h5>
+
+                    <p class="upload-pmodal text-center">Upload your <span>CV / Resume</span> for your account</p>
+                    <div class="col-md-12 text-center">
+
+                        <div class="upload-area mt-2">
+                            <input type="file" accept="application/msword, application/pdf">Upload
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!------------------- CV RESUME Select  ----------------------->
+    <div class="modal modal-position-custom fade" id="selectCV" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-body">
+
+                    <button type="button" class="close close-custom2" data-dismiss="modal" aria-label="Close"> <i
+                            class="fas fa-arrow-left"></i> </button>
+
+                    <div class="text-center h5-modal-top-title">
+                        <img class="upload-pic-main2" src="images/pdffile.png" alt="">
+                        <div class="profile-user-detauls-right">
+                            <h6>Document Selected</h6>
+                            <p>This document will be visible for everyone</p>
+                            <label class="lab-se-cv text-left full-width" id="doc-name"></label>
+                        </div>
+                    </div>
+
+                    <p class="upload-imagem text-center"><span>Upload?</span></p>
+                    <div class="col-md-12 text-center">
+                        <button class="mt-2 btn  btn-warning btn-image-permission mr-2"
+                            data-dismiss="modal">Cancel</button>
+                        <button type="button" class="mt-2 btn btn-success btn-image-permission ml-2"
+                            onclick="uploadCV(cvUrl)">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-------------------CV succseefully  ----------------------->
+    <div class="modal modal-position-custom fade" id="cvSuccessfully" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-body">
+
+                    <button type="button" class="close close-custom2" data-dismiss="modal" aria-label="Close"> <i
+                            class="fas fa-arrow-left"></i> </button>
+
+                    <div class="text-center h5-modal-top-title border-bottom-0">
+                        <img class="upload-pic-main2 img-margin-auto" src="images/pdffile.png" alt="">
+                        <div class="clearfix"></div>
+                        <div class="mt-4 pro-succe-title">CV uploaded <span>Successfully!</span></div>
+
+                    </div>
+
+
+                    <div class="col-md-12 text-center">
+                        <button type="button" class="mt-2 btn btn-success btn-image-permission"
+                            id="btn-cv-done">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script type="text/javascript">
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+                document.location.href = url;
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+        //Variables
+        var email = getParameterFromURL("email");
+        var cvUrl = "";
+
+        //Bind Data
+        $("#profile-picture").attr('src', 'services/images/profile_pictures/' + email + ".png");
+
+        //Events
+        $("#btn-cancel-cv-uploading").click(function (e) {
+            $("#uploadCV").modal('hide');
+        });
+
+        window.addEventListener('load', function () {
+            document.querySelector('input[type="file"]').addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    fileExtension = this.files[0].name.split('.').pop();
+                    if (fileExtension !== "pdf") {
+                        toastr.error("Please select file in pdf format")
+                        return;
+                    }
+                    $("#uploadCV").modal('hide');
+                    $("#selectCV").modal('show');
+                    $("#doc-name").html(this.files[0].name);
+                    cvUrl = URL.createObjectURL(this.files[0]);
+                }
+            });
+        });
+
+        $("#btn-cv-done").click(function (e) {
+            document.location.href = "nominate-supervisor.html?email=" + getParameterFromURL("email");
+        });
+
+        $(document).ready(function () {
+            $(".top-filter-area").load("top-nav-bar.html");
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Chat Message</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.6/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-database.js"></script>
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2"> <a href=""><span class="back-span-top"><i
+                                                    class="fas fa-arrow-left"></i></span></a>
+                                        <h5 class="select-suv-h5 mb-4">Send
+                                            <label>Message</label>
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="search-area-top search-dasboad-top">
+                                            <input class="form-control input-search" type="text"
+                                                placeholder="Search a connection" name="">
+                                            <button class="btn btn-search-icon"><img src="images/search-icon.png"
+                                                    alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row pt-2 mr-0 ml-0">
+                                    <div class="col-lg-3 col-sm-12 pl-0">
+                                        <div class="profile-block-all">
+                                            <img class="supervisor-profile-pic" src="images/user-2.png" alt="">
+                                            <div class="supervisor-profile-block text-center">
+                                                <h4 id="supervisor-name">--</h4>
+                                                <p>Physical Therapist & Supervisor</p>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 text-center pl-0 pr-0">
+                                                <button class="btn btn-success nominate-btn btn-sen-message mb-2">Send
+                                                    Message</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-9 col-sm-12 pl-5 pl-5-chat">
+                                        <div class="single-employee-chat-details">
+
+                                            <div class="col-md-12 text-left pt-3">
+                                                <button class="btn btn-delete-chat ml-2"><i
+                                                        class="fas fa-trash mr-2"></i>Delete</button>
+                                                <button class="btn btn-share-chat ml-2"><i
+                                                        class="fas fa-share-alt mr-2"></i>Share</button>
+                                            </div>
+
+                                            <div class="single-employee-chat-details-area scrool_ber height_table_406">
+                                                <ul class="list-inline list-group message-list"></ul>
+                                            </div>
+                                            <div class="message-write-footer">
+
+                                                <div class="messgae-wright-field">
+                                                    <input type="text" class="form-control messgae-field " name=""
+                                                        placeholder="Start Typing...">
+
+                                                    <div class="file-send-area">
+                                                        <button class="btn btn-send-chat">Send</button>
+                                                        <button class="btn btn-attach">
+                                                            <input type="file" name="">
+                                                            <i class=""><img src="images/atticon.png" alt=""></i>
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end container-fluid -->
+    </main>
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script type="text/javascript">
+        var email = "";
+        var therapistEmail = "";
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+                document.location.href = url;
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+        $(document).ready(function () {
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            const firebaseConfig = {
+                apiKey: "AIzaSyBMUqHKM_J61UmTdpZNcqlYesDeIAmOLcM",
+                authDomain: "mustard-seed-306808.firebaseapp.com",
+                databaseURL: "https://mustard-seed-306808-default-rtdb.firebaseio.com",
+                projectId: "mustard-seed-306808",
+                storageBucket: "mustard-seed-306808.appspot.com",
+                messagingSenderId: "974243198962",
+                appId: "1:974243198962:web:e0a130894160fc472fdd6b",
+                measurementId: "G-3CQNCKYJC5"
+            };
+            firebase.initializeApp(firebaseConfig);
+
+            therapistEmail = getParameterFromURL("email");
+
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                } else {
+                    const sessionResponse = msg.split('-');
+                    email = sessionResponse[1];
+                    getProfile(therapistEmail);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+
+            $(".btn-send-chat").click(function (e) {
+                var message = $(".messgae-field").val();
+                if (message == "") {
+                    toastr.warning("Cannot send empty message");
+                    return;
+                }
+                sendMessage(message, therapistEmail);
+            });
+        });
+
+        //Get Profile Function
+        function getProfile(email) {
+            var getUserProfile = {
+                Data: {
+                    email: email,
+                    lvl: 5
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/profile.php",
+                type: "POST",
+                data: getUserProfile,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    console.log(response.data);
+                    var user = response.data;
+                    $('#supervisor-name').text(user['name']);
+                    var therapistPicPath = user['email'];
+
+                    if (doesFileExist("services/images/profile_pictures/" + therapistPicPath + ".png")) {
+                        therapistPicPath = "user-avatar";
+                    }
+                    $('.supervisor-profile-pic').attr('src', 'services/images/profile_pictures/' + therapistPicPath + '.png');
+
+                    getMessages();
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        }
+
+        function doesFileExist(urlToFile) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', urlToFile, false);
+            xhr.send();
+
+            return xhr.status === 404;
+        }
+
+        function getMessages() {
+            var messagesRef = firebase.database().ref('messages').child(getUniqueID(email)).child(getUniqueID(therapistEmail));
+            var messagesList = new Array();
+            var count = 0;
+            messagesRef.orderByChild('messageTime').on('value', function (snapshot) {
+                $(".message-list").empty();
+                snapshot.forEach(function (childSnapshot) {
+                    var message = childSnapshot.child('message').val();
+                    var messageID = childSnapshot.child('messageID').val();
+                    var receiverID = childSnapshot.child('receiverID').val();
+                    var senderID = childSnapshot.child('senderID').val();
+                    var type = childSnapshot.child('type').val();
+                    var messageTime = childSnapshot.child('messageTime').val();
+
+                    count++;
+                    if (senderID == getUniqueID(email)) {
+                        $(".message-list").append(`<li tabindex = "` + count + `">
+                                                        <table class="float-right">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td class="chat-left-title"><div class="employee-pro-right-repy">
+                                                                        <p class="chat-title-pro-right-repy">
+                                                                            <label>` + message + `</label>
+                                                                            <span>5:15pm</span>
+                                                                        </p>
+                                                                    </div></td>
+
+                                                                    <td class="align-middle-image">
+                                                                        <div class="employee-pro-left-repy"> <img src="images/profile-user.png" alt=""> </div></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </li>`);
+                    } else {
+                        $(".message-list").append(`
+                                                <li tabindex = "` + count + `">
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <div class="employee-pro-left"> <img
+                                                                            src="images/a1.png" alt=""> </div>
+                                                                </td>
+                                                                <td class="chat-left-title">
+                                                                    <div class="employee-pro-right">
+                                                                        <p class="chat-title-pro-right">
+                                                                            <span>5:15pm</span>
+                                                                            <label>` + message + `</label>
+                                                                        </p>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </li>`);
+                    }
+                    $('li').last().addClass('active-li').focus();
+                });
+            });
+        }
+
+        function sendMessage(message, therapistEmail) {
+            var senderID = getUniqueID(email);
+            var receiverID = getUniqueID(therapistEmail);
+            var messageID = getMessageID();
+            firebase.database().ref('messages/' + senderID + "/" + receiverID).child(messageID).set({
+                messageID: messageID,
+                message: message,
+                messageTime: getFormattedTime(),
+                senderID: senderID,
+                receiverID: receiverID,
+                type: "TEXT"
+            });
+
+            (".message-list").animate({ scrollTop: $(document).height() }, 500);
+            getMessages();
+        }
+
+
+        function getUniqueID(email) {
+            var unqiueID = "";
+            for (var i = 0; i < email.length; i++) {
+                unqiueID += therapistEmail.charCodeAt(i) + "_";
+            }
+            return unqiueID;
+        }
+
+        function getFormattedTime() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mon = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            var hh = today.getHours();
+            var min = today.getMinutes();
+            var ss = today.getSeconds();
+
+            today = mon + '/' + dd + '/' + yyyy + ' ' + hh + ':' + min + ':' + ss;
+            return today;
+        }
+
+        function getMessageID() {
+            var result = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            var charactersLength = characters.length;
+            for (var i = 0; i < 16; i++) {
+                result += characters.charAt(Math.floor(Math.random() *
+                    charactersLength));
+            }
+            return result;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Book Supervision</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2">
+                                        <span class="back-span-top" onclick="goBack()"><i
+                                                class="fas fa-arrow-left"></i></span>
+                                        <h5 class="select-suv-h5 mb-4">Book <label>Supervision</label></h5>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-2 mr-0 ml-0">
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <div class="profile-block-header"> <i class="user-icon-block"><img
+                                                        src="images/super-icon.png" alt=""></i>
+                                                <div class="profile-block-user-title">
+                                                    <p>Book Supervision</p>
+                                                    <label class="genetated-label">Confirm Sending Report</label>
+                                                </div>
+                                            </div>
+                                            <p class="p-profile-body mb-4">Confirm to send the report to the
+                                                supervision.
+                                            </p>
+                                            <a href="12-book-supervision-confirm-sent.html"><button
+                                                    class="alert alert-success float-right btn-complete-profile active-color-btn">Confirm</button></a>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="col-md-12 p-0">
+                                    <!-- header-responsive-view -->
+                                    <div class="header-responsive-view">
+
+                                        <ul class="list-group list-inline flex-sm-row">
+                                            <li>
+                                                <a href="">
+                                                    <button><i class="fas fa-user-plus"></i></button>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="">
+                                                    <button><img src="images/message-noti2.png" alt=""></button>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="">
+                                                    <button><i class="fas fa-bell"></i></button>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="">
+                                                    <button><i class="fas fa-cog setting-icon-top"></i></button>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a href="">
+                                                    <button><img src="images/search-icon.png" alt=""></button>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!--end header-responsive-view -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end container-fluid -->
+    </main>
+
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src='js/bootstrap-datepicker.min.js'></script>
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+                document.location.href = url;
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+        $(document).ready(function () {
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+    </script>
+</body>
+
+</html>

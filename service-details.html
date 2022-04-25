@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Service Details</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel='stylesheet' href='css/fullcalendar.min.css'>
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2"> <a onclick="history.back()"><span
+                                                class="back-span-top"><i class="fas fa-arrow-left"></i></span></a>
+                                        <h5 class="select-suv-h5 mb-4">Service
+                                            <label>Details</label>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row pt-2 mr-0 ml-0" id="profile-layout">
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all"> <img class="supervisor-profile-pic"
+                                                src="" alt="">
+                                            <div class="supervisor-profile-block text-center">
+                                                <h4 id="service-name"></h4>
+                                                <p>Physical Therapist & Supervisor</p>
+                                                <p class="mt-2 pt-1">Duration: <span class="email"
+                                                        id="service-duration"></span></p>
+                                                <p class="mt-1" id="service-cost"></p>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 text-center pl-0 pr-0">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-sm-6 pl-4">
+                                        <div class="single-employee-chat-details">
+                                            <div class="profile-block-full p-4"> <img class="pro-profile-right" src=""
+                                                    alt="">
+                                                <h4 class="text-center h4-pro-right"><span
+                                                        id="service-name-right"></span></h4>
+                                                <p class="text-center p-pro-right" id="profession">Profession -
+                                                    Therapist</p>
+                                                <hr class="mb-4">
+                                                <address class="address-block">
+                                                    <h5>Service Type</h5>
+                                                    <p id="service-type"></p>
+                                                </address>
+                                                <address class="address-block">
+                                                    <h5>Booking Details</h5>
+                                                    <p id="service-detail"> </p>
+                                                </address>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- end container-fluid -->
+    </main>
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Stripe -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="services/api/payment.php"></script>
+
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+
+    <script type="text/javascript">
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+                document.location.href = url;
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+        $(document).ready(function () {
+            $('#profile-layout').hide();
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            getServiceDetails();
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+
+        var serviceID = getParameterFromURL("s_id");
+
+        function getServiceDetails() {
+            var bookingPayload = {
+                Data: {
+                    serviceID: serviceID,
+                    lvl: 21
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/profile.php",
+                type: "POST",
+                data: bookingPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    console.log(response.data);
+                    var booking = response.data['services'];
+                    $('#service-name').text(booking[0]['serviceTitle']);
+                    $('#service-name-right').text(booking[0]['serviceTitle']);
+                    $('#service-duration').text(booking[0]['serviceDuration']);
+                    $('#service-cost').text("Cost: £" + booking[0]['serviceCost']);
+                    $('#service-type').text(booking[0]['serviceType']);
+                    $('#service-detail').text(booking[0]['serviceDesc']);
+                    var picPath = booking[0]['therapistEmail'];
+                    if (doesFileExist("services/images/profile_pictures/" + booking[0]['therapistEmail'] + ".png")) {
+                        picPath = "user-avatar";
+                    }
+                    $('.pro-profile-right').attr('src', 'services/images/profile_pictures/' + picPath + ".png");
+                    $('.supervisor-profile-pic').attr('src', 'services/images/profile_pictures/' + picPath + ".png");
+
+                    $('#profile-layout').show();
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        }
+
+        function doesFileExist(urlToFile) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', urlToFile, false);
+            xhr.send();
+
+            return xhr.status === 404;
+        }
+
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+    </script>
+</body>
+
+</html>

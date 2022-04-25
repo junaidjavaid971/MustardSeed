@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Search Therapist</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2">
+                                        <span class="back-span-top" onclick="goBack()"><i
+                                                class="fas fa-arrow-left"></i></span>
+                                        <h5 class="select-suv-h5 mb-4">Search For <label>Therapist</label></h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="search-area-top search-dasboad-top">
+                                            <input class="form-control input-search" type="text"
+                                                placeholder="Search for Therapist" name="">
+                                            <button class="btn btn-search-icon"><img src="images/search-icon.png"
+                                                    alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-2 mr-0 ml-0">
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <img class="supervisor-profile-pic" src="images/n1.png" alt="">
+
+                                            <div class="supervisor-profile-block text-center">
+                                                <h4>Dr. Abraham Pigoon</h4>
+                                                <p>Physical Therapist & Supervisor</p>
+                                                <p class="mt-2 pt-1">Email ID: abrahampigoon@gmail.com</p>
+                                                <p class="mt-1">Number: 44+ 123467890</p>
+                                            </div>
+
+
+                                            <div class="col-md-12 col-sm-12 text-left pl-0 pr-0">
+                                                <button class="alert alert-primary view-profile-btn float-left">View
+                                                    Profile</button>
+
+                                                <button class="btn btn-success nominate-btn float-right"
+                                                    data-toggle="modal" data-target="#nominateModal">Nominate</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <img class="supervisor-profile-pic" src="images/n2.png" alt="">
+
+                                            <div class="supervisor-profile-block text-center">
+                                                <h4>Dr. Alita Rose</h4>
+                                                <p>Physical Therapist & Supervisor</p>
+                                                <p class="mt-2 pt-1">Email ID: abrahampigoon@gmail.com</p>
+                                                <p class="mt-1">Number: 44+ 123467890</p>
+                                            </div>
+
+
+                                            <div class="col-md-12 col-sm-12 text-left pl-0 pr-0">
+                                                <button class="alert alert-primary view-profile-btn float-left">View
+                                                    Profile</button>
+
+                                                <button
+                                                    class="alert alert-primary view-profile-btn float-right">Nominate</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <img class="supervisor-profile-pic" src="images/n3.png" alt="">
+
+                                            <div class="supervisor-profile-block text-center">
+                                                <h4>Dr. Lara Hidelston</h4>
+                                                <p>Physical Therapist & Supervisor</p>
+                                                <p class="mt-2 pt-1">Email ID: abrahampigoon@gmail.com</p>
+                                                <p class="mt-1">Number: 44+ 123467890</p>
+                                            </div>
+
+
+                                            <div class="col-md-12 col-sm-12 text-left pl-0 pr-0">
+                                                <button class="alert alert-primary view-profile-btn float-left">View
+                                                    Profile</button>
+
+                                                <button
+                                                    class="alert alert-primary view-profile-btn float-right">Nominate</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <img class="supervisor-profile-pic" src="images/n4.png" alt="">
+
+                                            <div class="supervisor-profile-block text-center">
+                                                <h4>Dr. John White</h4>
+                                                <p>Physical Therapist & Supervisor</p>
+                                                <p class="mt-2 pt-1">Email ID: abrahampigoon@gmail.com</p>
+                                                <p class="mt-1">Number: 44+ 123467890</p>
+                                            </div>
+
+
+                                            <div class="col-md-12 col-sm-12 text-left pl-0 pr-0">
+                                                <button class="alert alert-primary view-profile-btn float-left">View
+                                                    Profile</button>
+
+                                                <button
+                                                    class="alert alert-primary view-profile-btn float-right">Nominate</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end container-fluid -->
+    </main>
+    <!-------------------------------- modal all ---------------------------------------------------------------------------->
+
+    <!------------------- nominate Modal  ----------------------->
+    <div class="modal modal-position-custom fade" id="nominateModal" data-backdrop="static" data-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content modal-content-custom">
+                <div class="modal-body">
+
+                    <button type="button" class="close close-custom2" data-dismiss="modal" aria-label="Close"> <i
+                            class="fas fa-arrow-left"></i> </button>
+
+                    <div class="text-center h5-modal-top-title">
+                        <img class="upload-pic-main border-3" src="images/profile-user.png" alt="">
+                        <div class="profile-user-detauls-right">
+                            <h6>Dr. Abraham Pigoon</h6>
+                            <p class="p-color">Physical Therapist & Supervisor</p>
+                        </div>
+                    </div>
+
+                    <p class="upload-imagem text-center"><span>Confirm Nominaton?</span></p>
+                    <div class="col-md-12 text-center">
+                        <button class="mt-2 btn  btn-warning btn-image-permission mr-2">Cancel</button>
+                        <button type="button" class="mt-2 btn btn-success btn-image-permission ml-2" data-toggle="modal"
+                            data-dismiss="modal" data-target="#picUploadSuccessfully">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script type="text/javascript">
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+                document.location.href = url;
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+        $(document).ready(function () {
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+
+        $("#search-icon").click(function () {
+            document.location.href = "my-contracts.html";
+            document.location.href = url;
+        });
+
+        //Search a Therapist
+        function searchTherapist(searchQuery) {
+            var therapists = {
+                Data: {
+                    searchQuery: searchQuery,
+                    lvl: "12"
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/profile.php",
+                type: "POST",
+                data: therapists,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code == "00") {
+                    var a = response.data['users'];
+                    var parent = $('.therapists-list');
+                    for (var i = 0; i < a.length; i++) {
+                        console.log(a[i]['id']);
+                        var email = a[i]['email'];
+                        var userPicPath = a[i]['email'];
+                        if (doesFileExist("services/images/profile_pictures/" + userPicPath + ".png")) {
+                            userPicPath = "user-avatar";
+                        }
+
+                        parent.append(`
+                            <div class="col-lg-3 col-sm-6 pl-0" id="therapist-profile">
+                                <div class="profile-block-all">
+                                    <img class="supervisor-profile-pic" src=services/images/profile_pictures/${userPicPath}.png alt = "" >
+
+                                    <div class="supervisor-profile-block text-center">
+                                        <h4>` + a[i]['name'] + `</h4>
+                                        <p>` + a[i]['role'] + `</p>
+                                        <p class="mt-2 pt-1">Email ID: ` + a[i]['email'] + `</p>
+                                        <p class="mt-1">Number: ` + a[i]['contactNumber'] + `</p>
+                                    </div>
+
+
+                                    <div class="col-md-12 col-sm-12 text-center pl-0 pr-0">
+                                        <a href="therapist-profile.html?t_email=` + a[i]['email'] + `"><button
+                                                class="btn btn-success nominate-btn btn-sen-message mb-2">View
+                                                Profile</button></a>
+                                    </div>
+
+                                </div >
+                            </div >
+                        `);
+                    }
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+    </script>
+</body>
+
+</html>

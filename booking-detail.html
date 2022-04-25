@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Booking Details</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/toastr.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel='stylesheet' href='css/fullcalendar.min.css'>
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2"> <a onclick="history.back()"><span
+                                                class="back-span-top"><i class="fas fa-arrow-left"></i></span></a>
+                                        <h5 class="select-suv-h5 mb-4">Booking
+                                            <label>Details</label>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="row pt-2 mr-0 ml-0" id="profile-layout">
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all"> <img class="supervisor-profile-pic"
+                                                src="images/n1.png" alt="">
+                                            <div class="supervisor-profile-block text-center">
+                                                <h4 id="therapist-name"></h4>
+                                                <p>Physical Therapist & Supervisor</p>
+                                                <p class="mt-2 pt-1">Booking Date: <span class="email"
+                                                        id="booking-date">14 September, 2020</span></p>
+                                                <p class="mt-1" id="booking-slot">Booking Slot: 08:00 - 09:00</p>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 text-center">
+                                                <a href="javascript:closeSession();" class="close-session">
+                                                    <h5 class="text-center" id="text-close-session">Close Session</h5>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 text-center pl-0 pr-0">
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 text-center pl-0 pr-0">
+                                                <a id="change-therapist-btn"><button
+                                                        class="btn btn-success nominate-btn btn-sen-message mb-2">Change
+                                                        Therpist</button></a>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 text-center pl-0 pr-0">
+                                                <a id="cancel-booking-btn"><button
+                                                        class="btn btn-success nominate-btn btn-sen-message mb-2">Cancel
+                                                        Booking</button></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-9 col-sm-6 pl-4">
+                                        <div class="single-employee-chat-details">
+                                            <div class="profile-block-full p-4"> <img class="pro-profile-right" src=""
+                                                    alt="">
+                                                <h4 class="text-center h4-pro-right"> Name - <span
+                                                        id="therapist-name-right"></span></h4>
+                                                <p class="text-center p-pro-right" id="profession">Profession -
+                                                    Therapist</p>
+                                                <hr class="mb-4">
+                                                <address class="address-block">
+                                                    <h5>Booking Status</h5>
+                                                    <p id="booking-status"></p>
+                                                </address>
+                                                <address class="address-block">
+                                                    <h5>Booking Details</h5>
+                                                    <p id="booking-detail"> </p>
+                                                </address>
+                                                <address class="address-block">
+                                                    <h5>Contact Details</h5>
+                                                    <p> <strong>Email ID: </strong><span class="email"
+                                                            id="therapist-email"></span><br />
+                                                        <strong>Mobile Number:</strong><span
+                                                            class="mobile-number-right"></span><br />
+                                                        <strong>Address:</strong> <span class="address"
+                                                            id="therapist-address"></span>
+                                                    </p>
+                                                </address>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cancel Booking Form -->
+        <div class="modal fade" id="CancelBookingForm" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modal-content-custom">
+                    <div class="modal-body">
+                        <h4 class="modal-title profile-title-modal p-2">Booking</h4>
+                        <div class="step-message-modal">
+                            <p><span>X</span>Cancel Booking</p>
+                        </div>
+                        <button type="button" class="close close-custom" data-dismiss="modal" aria-label="Close"> <i
+                                class="fas fa-arrow-left"></i> </button>
+                        <section class="multistep-area pt-5">
+                            <div class="col-md-9 mt-2 pt-1 pl-0">
+                                <label class="pl-3 mb-3 modal-label-title2 mt-3"><strong>Are you sure you want to cancel
+                                        the booking? Your payment will be refunded in your account.
+                                        Yes/No</strong></label>
+                                <div class="col-md-12">
+                                    <button id="btn-cancel-booking" type="button"
+                                        class="md-6 float-right action-button btn-success btn-next-all-btn ">Yes</button>
+                                    <button id="btn-dismiss-cancel-booking" type="button"
+                                        class="mt-6 float-right action-button btn-success btn-next-all-btn">No</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Close Booking Form -->
+        <div class="modal fade" id="CloseBookingModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modal-content-custom">
+                    <div class="modal-body">
+                        <h4 class="modal-title profile-title-modal p-2">Session</h4>
+                        <div class="step-message-modal">
+                            <p><span>X</span>Close Session</p>
+                        </div>
+                        <button type="button" class="close close-custom" data-dismiss="modal" aria-label="Close"> <i
+                                class="fas fa-arrow-left"></i> </button>
+                        <section class="multistep-area pt-5">
+                            <div class="col-md-9 mt-2 pt-1 pl-0">
+                                <label class="pl-3 mb-3 modal-label-title2 mt-3"><strong>Are you sure you want to close
+                                        this session?
+                                        Yes/No</strong></label>
+                                <div class="col-md-12">
+                                    <button id="btn-close-session" type="button"
+                                        class="md-6 float-right action-button btn-success btn-next-all-btn ">Yes</button>
+                                    <button id="btn-dismiss-close-session" type="button"
+                                        class="mt-6 float-right action-button btn-success btn-next-all-btn">No</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end container-fluid -->
+
+        <!-- Rating Form -->
+        <div class="modal fade" id="rate-review-modal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modal-content-custom">
+                    <div class="modal-body">
+                        <h4 class="modal-title profile-title-modal p-2">Feedback</h4>
+                        <div class="step-message-modal">
+                            <p><span></span>Rate & Review</p>
+                        </div>
+                        <button type="button" class="close close-custom" data-dismiss="modal" aria-label="Close"> <i
+                                class="fas fa-arrow-left"></i> </button>
+                        <section class="multistep-area pt-5">
+                            <div class="col-md-12 mt-2 pt-1 pl-0">
+                                <label class="pl-3 mb-3 modal-label-title2 mt-3"><strong>Please provide us your valuable
+                                        feedback</strong></label>
+
+                                <div class="rating col-md-9"> <input type="radio" name="rating" value="5" id="5"><label
+                                        class="rating-label" for="5">☆</label> <input type="radio" name="rating"
+                                        value="4" id="4"><label class="rating-label" for="4">☆</label> <input
+                                        type="radio" name="rating" value="3" id="3"><label class="rating-label"
+                                        for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label
+                                        class="rating-label" for="2">☆</label> <input type="radio" name="rating"
+                                        value="1" id="1"><label class="rating-label" for="1">☆</label>
+                                </div>
+                                <div class="mb-3 ">
+                                    <textarea class="form-control" placeholder="Write your review..." id="input-review"
+                                        rows="5"></textarea>
+                                </div>
+                                <button id="btn-save-review" type="button"
+                                    class="mt-6 float-right action-button btn-success btn-next-all-btn">Submit</button>
+                            </div>
+                    </div>
+                </div>
+                </section>
+            </div>
+        </div>
+        </div>
+        </div>
+        <!-- end container-fluid -->
+    </main>
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Stripe -->
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script type="text/javascript" src="services/api/payment.php"></script>
+
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+
+    <script type="text/javascript">
+        var walletPayment = false;
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+                document.location.href = url;
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+        $(document).ready(function () {
+            $('#profile-layout').hide();
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            getBooking();
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+
+        var bookingID = getParameterFromURL("b_id");
+
+        $("#cancel-booking-btn").click(function (e) {
+            $('#CancelBookingForm').modal('show');
+        });
+
+        $("#change-therapist-btn").click(function (e) {
+            sessionStorage.setItem("change-therapist-email", $("#therapist-email").text());
+            sessionStorage.setItem("booking-id", bookingID);
+            document.location.href = "therapists.html";
+            document.location.href = url;
+        });
+
+        $("#btn-cancel-booking").click(function (e) {
+            if (walletPayment) {
+                cancelWalletBooking();
+            } else {
+                cancelBooking();
+            }
+        });
+
+        $("#btn-dismiss-cancel-booking").click(function (e) {
+            $('#CancelBookingForm').modal('hide');
+        });
+
+        $("#btn-save-review").click(function (e) {
+            var rating = $("input[name=rating]:checked").val();
+            var review = $("#input-review").val();
+            if (rating == null) {
+                toastr.warning("Please select rating stars as per you desire.");
+                return;
+            }
+
+            var saveFeedbackPayload = {
+                Data: {
+                    rating: rating,
+                    review: review,
+                    bookingID: bookingID,
+                    lvl: 14
+                }
+            }
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: saveFeedbackPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    toastr.success(response.desc);
+                    $("#rate-review-modal").modal("hide");
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        });
+
+        $("#btn-close-session").click(function (e) {
+            var closeBookingPayload = {
+                Data: {
+                    bookingID: bookingID,
+                    lvl: 12
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: closeBookingPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    toastr.success(response.desc);
+                    location.reload();
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        });
+
+        $("#btn-dismiss-close-session").click(function (e) {
+            $('#CloseBookingModal').modal('hide');
+        });
+
+        function getBooking() {
+            var bookingPayload = {
+                Data: {
+                    bookingID: bookingID,
+                    lvl: 3
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: bookingPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    console.log(response.data);
+                    var booking = response.data['bookings'];
+                    $('#therapist-name').text(booking[0]['therapistName']);
+                    $('#therapist-name-right').text(booking[0]['therapistName']);
+                    $('#booking-date').text(booking[0]['bookingDate']);
+                    $('#booking-slot').text("Booking Slot: " + booking[0]['startTime'] + " - " + booking[0]['endTime']);
+                    $('.mobile-number-right').text(booking[0]['therapistPhoneNumber']);
+                    $('#therapist-email').text(booking[0]['therapistEmail']);
+                    $('#booking-detail').text(booking[0]['bookingDescription']);
+                    $('#therapist-address').text(booking[0]['therapistAddress']);
+                    $('#booking-status').text(booking[0]['bookingStatus']);
+                    var picPath = booking[0]['therapistEmail'];
+                    if (doesFileExist("services/images/profile_pictures/" + booking[0]['therapistEmail'] + ".png")) {
+                        picPath = "user-avatar";
+                    }
+                    $('.pro-profile-right').attr('src', 'services/images/profile_pictures/' + picPath + ".png");
+                    $('.supervisor-profile-pic').attr('src', 'services/images/profile_pictures/' + picPath + ".png");
+
+
+                    if (booking[0]['bookingStatus'] != "Confirmed") {
+                        $("#cancel-booking-btn").hide();
+                        $("#change-therapist-btn").hide();
+                        $(".close-session").hide();
+                    }
+
+                    if (booking[0]['paymentID']) {
+                        walletPayment = true;
+                    }
+                    $('#profile-layout').show();
+
+                    if (booking[0]['bookingStatus'] == "Finished") {
+                        getFeedback();
+                    }
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        }
+
+        function getBooking() {
+            var bookingPayload = {
+                Data: {
+                    bookingID: bookingID,
+                    lvl: 3
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: bookingPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    console.log(response.data);
+                    var booking = response.data['bookings'];
+                    $('#therapist-name').text(booking[0]['therapistName']);
+                    $('#therapist-name-right').text(booking[0]['therapistName']);
+                    $('#booking-date').text(booking[0]['bookingDate']);
+                    $('#booking-slot').text("Booking Slot: " + booking[0]['startTime'] + " - " + booking[0]['endTime']);
+                    $('.mobile-number-right').text(booking[0]['therapistPhoneNumber']);
+                    $('#therapist-email').text(booking[0]['therapistEmail']);
+                    $('#booking-detail').text(booking[0]['bookingDescription']);
+                    $('#therapist-address').text(booking[0]['therapistAddress']);
+                    $('#booking-status').text(booking[0]['bookingStatus']);
+                    var picPath = booking[0]['therapistEmail'];
+                    if (doesFileExist("services/images/profile_pictures/" + booking[0]['therapistEmail'] + ".png")) {
+                        picPath = "user-avatar";
+                    }
+                    $('.pro-profile-right').attr('src', 'services/images/profile_pictures/' + picPath + ".png");
+                    $('.supervisor-profile-pic').attr('src', 'services/images/profile_pictures/' + picPath + ".png");
+
+
+                    if (booking[0]['bookingStatus'] != "Confirmed") {
+                        $("#cancel-booking-btn").hide();
+                        $("#change-therapist-btn").hide();
+                        $(".close-session").hide();
+                    }
+
+                    if (booking[0]['paymentID']) {
+                        walletPayment = true;
+                    }
+                    if (booking[0]['bookingStatus'] == "Finished") {
+                        getFeedback();
+                    }
+                    $('#profile-layout').show();
+
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        }
+
+        function getFeedback() {
+            var bookingPayload = {
+                Data: {
+                    bookingID: bookingID,
+                    lvl: 13
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: bookingPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code == "00") {
+
+                } else {
+                    $("#rate-review-modal").modal('show');
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        }
+
+        function cancelWalletBooking() {
+            var cancelBookingPayload = {
+                Data: {
+                    bookingID: bookingID,
+                    lvl: 8
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: cancelBookingPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    toastr.success(response.desc);
+                    location.reload();
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        }
+
+        function cancelBooking() {
+            var cancelBookingPayload = {
+                Data: {
+                    bookingID: bookingID,
+                    lvl: 4
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: cancelBookingPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    toastr.success(response.desc);
+                    history.back();
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        }
+
+        function closeSession() {
+            $("#CloseBookingModal").modal('show');
+        }
+
+        function doesFileExist(urlToFile) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', urlToFile, false);
+            xhr.send();
+
+            return xhr.status === 404;
+        }
+
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Therapy Sessions</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/toastr.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+
+    <!-- Date Picker CSS -->
+    <link href="css/jquery.datetimepicker.min.css" rel="stylesheet">
+
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+                        <div class="dasboard-top-header"></div>
+                        <div class="top-filter-area"></div>
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2">
+                                        <span class="back-span-top" onclick="history.back()"><i
+                                                class="fas fa-arrow-left"></i></span>
+                                        <h5 class="select-suv-h5 mb-4">Sessions Marketplace <label></label></h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="search-area-top search-dasboad-top">
+                                            <input class="form-control input-search" type="text"
+                                                placeholder="Find a Therapy Session" name="">
+                                            <button class="btn btn-search-icon"><img src="images/search-icon.png"
+                                                    alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2">
+                                        <h5 class="select-suv-h5 mb-4">
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 pt-2 text-right display-none-all">
+                                        <button class="btn-library mr-1 btn-your-therapy-sessions" onclick="javascript:getProfile()"> <i
+                                                class="fas fa-download"></i><span class="pl-2">Your Therapy
+                                                Sessions</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row pt-2 mr-0 ml-0 therapists-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Included JS -->
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src='js/jquery.datetimepicker.min.js'></script>
+
+    <!-- Custom JS -->
+    <script src="js/custom.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+
+    <!-- Local JS -->
+    <script type="text/javascript">
+
+        var currentUser = "";
+
+        var email = "";
+
+        var mondaySelected = false;
+        var tuesdaySelected = false;
+        var wednesdaySelected = false;
+        var thursdaySelected = false;
+        var fridaySelected = false;
+        var saturdaySelected = false;
+        var sundaySelected = false;
+
+        //Variables
+        var sessionType = "";
+        var sessionDuration = "";
+        var sessionBreaks = "";
+        var sessionPrice = "";
+        var mondayTimings = "";
+        var tuesdayTimings = "";
+        var wednesdayTimings = "";
+        var thursdayTimings = "";
+        var fridayTimings = "";
+        var saturdayTimings = "";
+        var sundayTimings = "";
+        var futureBookings = "";
+        var bookingMode = "Group";
+        var isAttendeesAllowed = false;
+        var isDiffPayeeAllowed = false;
+        var isSeriesofSessions = false;
+        var sessionSeries = "";
+        var sessionVenues = "";
+        var isRecordingAllowed = false;
+
+        var isVideoSelected = false;
+        var isAudioSelected = false;
+        var isTelephoneSelected = false;
+        var isChatSelected = false;
+        var isFaceToFaceSelected = false;
+
+        //Log out
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        //Get all Therapy Sessions
+        function getAllTherapySessions(email) {
+            var therapySessionsData = {
+                Data: {
+                    lvl: "3"
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/therapy-session.php",
+                type: "POST",
+                data: therapySessionsData,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code == "00") {
+                    var a = response.data['therapySessions'];
+                    if (a.length == 0) {
+                        $('.therapists-list').hide();
+                        $('.dashboard-middle-area').append(
+                            $('<div/>')
+                                .append("<h5/>")
+                                .text("No search result found!")
+                        );
+                    } else {
+                        var parent = $('.therapists-list');
+                        a.sort(function (a, b) {
+                            return new Date(b.postedOn) - new Date(a.postedOn);
+                        });
+                        for (var i = 0; i < a.length; i++) {
+                            var email = a[i]['email'];
+                            var userPicPath = a[i]['offeredBy'];
+                            if (doesFileExist("services/images/profile_pictures/" + userPicPath + ".png")) {
+                                userPicPath = "user-avatar";
+                            }
+
+                            parent.append(`
+                            <div class="col-lg-3 col-sm-6 pl-0" id="therapist-profile">
+                                <div class="profile-block-all">
+                                    <img class="supervisor-profile-pic" src=services/images/profile_pictures/${userPicPath}.png alt = "" >
+
+                                    <div class="supervisor-profile-block text-center">
+                                        <h4>` + a[i]['sessionDuration'] + " " + a[i]['sessionType'] + " Session" + `</h4>
+                                        <p class="session-price">` + "£" + a[i]['sessionPrice'] + `</p>
+                                        <p class="mt-2 pt-1 session-delievry-mode">` + a[i]['sessionVenues'] + `</p>
+                                        <p class="mt-1">` + a[i]['bookingMode'] + " - Recording " + a[i]['isRecordingAllowed'] + ` </p>
+                                        <p class="mt-1 mb-2"> Offered By: <span class="offered-by">` + a[i]['userName'] + `</span> </p>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 text-center pl-0 pr-0 mt-2">
+                                        <a href="session-details.html?sessionID=` + a[i]['id'] + `&booked=false&f_b=false"><button
+                                                class="btn btn-success nominate-btn btn-sen-message mb-2">View
+                                                Details</button></a>
+                                    </div>
+
+                                </div >
+                            </div >
+                        `);
+                        }
+                    }
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        $("#search-icon").click(function (e) {
+            serachTherapist($(".input-search").val());
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                getAllTherapists($(".input-search").val());
+            }
+        });
+
+        function serachTherapist(query) {
+            getAllTherapists(query);
+        }
+
+        //Check if session is logged in
+        $(document).ready(function () {
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            initAllDatepickers();
+            manageClicks();
+            manageCheckboxes();
+
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                } else {
+                    email = msg.split('-')[1];
+                    getAllTherapySessions(email);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+
+        function initAllDatepickers() {
+
+            // Monday Start Time
+            $("#monday-start-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#monday-start-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Monday End Time
+            $("#monday-end-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#monday-end-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            //Tuesday Start Time
+            $("#tuesday-start-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#tuesday-start-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            //Tuesday End Time
+            $("#tuesday-end-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#tuesday-end-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Wednesday Start Time
+            $("#wednesday-start-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#wednesday-start-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Wednesday End Time
+            $("#wednesday-end-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#wednesday-end-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Thursday Start Time
+            $("#thursday-start-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#thursday-start-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Thursday End Time
+            $("#thursday-end-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#thursday-end-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Friday Start Time
+            $("#friday-start-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#friday-start-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Friday End Time
+            $("#friday-end-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#friday-end-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Saturday Start Time
+            $("#saturday-start-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#saturday-start-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Saturday End Time
+            $("#saturday-end-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#saturday-end-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Sunday Start Time
+            $("#sunday-start-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#sunday-start-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+
+            // Sunday End Time
+            $("#sunday-end-time").datetimepicker({
+                datepicker: false,
+                step: 60,
+                format: 'H:i'
+            });
+
+            $("#sunday-end-time").on("change", function () {
+                var selected = $(this).val();
+                $(this).text(selected);
+            });
+        }
+
+        function doesFileExist(urlToFile) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', urlToFile, false);
+            xhr.send();
+
+            return xhr.status === 404;
+        }
+
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+
+        function manageCheckboxes() {
+
+            $("#input-series").hide();
+            $("#attendees-off").prop('checked', true);
+            $("#payee-off").prop('checked', true);
+            $("#series-off").prop('checked', true);
+            $("#group").prop('checked', true);
+            $("#recording-not-allowed").prop('checked', true);
+
+            $("#attendees-on").change(function () {
+                if (this.checked) {
+                    $("#attendees-off").prop('checked', false);
+                    isAttendeesAllowed = true;
+                }
+            });
+
+            $("#attendees-off").change(function () {
+                if (this.checked) {
+                    $("#attendees-on").prop('checked', false);
+                    isAttendeesAllowed = false;
+                }
+            });
+
+            $("#group").change(function () {
+                if (this.checked) {
+                    $("#single").prop('checked', false);
+                    bookingMode = "Single";
+                }
+            });
+
+            $("#single").change(function () {
+                if (this.checked) {
+                    $("#group").prop('checked', false);
+                    bookingMode = "Group";
+                }
+            });
+
+            $("#payee-on").change(function () {
+                if (this.checked) {
+                    $("#payee-off").prop('checked', false);
+                    isDiffPayeeAllowed = true;
+                }
+            });
+
+            $("#payee-off").change(function () {
+                if (this.checked) {
+                    $("#payee-on").prop('checked', false);
+                    isDiffPayeeAllowed = false;
+                }
+            });
+
+            $("#series-on").change(function () {
+                if (this.checked) {
+                    $("#series-off").prop('checked', false);
+                    $("#input-series").show();
+                    isSeriesofSessions = true;
+                }
+            });
+
+            $("#series-off").change(function () {
+                if (this.checked) {
+                    $("#series-on").prop('checked', false);
+                    isSeriesofSessions = false;
+                    $("#input-series").hide();
+                }
+            });
+
+            $("#video").change(function () {
+                if (this.checked) {
+                    isVideoSelected = true;
+                } else {
+                    isVideoSelected = false;
+                }
+            });
+
+            $("#audio").change(function () {
+                if (this.checked) {
+                    isAudioSelected = true;
+                } else {
+                    isAudioSelected = false;
+                }
+            });
+
+            $("#telephone").change(function () {
+                if (this.checked) {
+                    isTelephoneSelected = true;
+                } else {
+                    isTelephoneSelected = false;
+                }
+            });
+
+            $("#chat").change(function () {
+                if (this.checked) {
+                    isChatSelected = true;
+                } else {
+                    isChatSelected = false;
+                }
+            });
+
+            $("#face-to-face").change(function () {
+                if (this.checked) {
+                    isFaceToFaceSelected = true;
+                } else {
+                    isFaceToFaceSelected = false;
+                }
+            });
+        }
+
+        function manageClicks() {
+            $('.modal').on("hidden.bs.modal", function (e) {
+                if ($('.modal:visible').length) {
+                    $('body').addClass('modal-open');
+                }
+            });
+
+            $(".btn-monday").click(function (e) {
+                if (mondaySelected) {
+                    mondaySelected = false;
+                    $(".btn-monday").css("background-color", "");
+                    $(".btn-monday").css("background", "");
+                } else {
+                    mondaySelected = true;
+                    $(".btn-monday").css("background-color", "#5bba47");
+                }
+            });
+
+            $(".btn-tuesday").click(function (e) {
+                if (tuesdaySelected) {
+                    tuesdaySelected = false;
+                    $(".btn-tuesday").css("background-color", "");
+                } else {
+                    tuesdaySelected = true;
+                    $(".btn-tuesday").css("background-color", "#5bba47");
+                }
+            });
+
+            $(".btn-wednesday").click(function (e) {
+                if (wednesdaySelected) {
+                    wednesdaySelected = false;
+                    $(".btn-wednesday").css("background-color", "");
+                } else {
+                    wednesdaySelected = true;
+                    $(".btn-wednesday").css("background-color", "#5bba47");
+                }
+            });
+
+            $(".btn-thursday").click(function (e) {
+                if (thursdaySelected) {
+                    thursdaySelected = false;
+                    $(".btn-thursday").css("background-color", "");
+                } else {
+                    thursdaySelected = true;
+                    $(".btn-thursday").css("background-color", "#5bba47");
+                }
+            });
+
+            $(".btn-friday").click(function (e) {
+                if (fridaySelected) {
+                    fridaySelected = false;
+                    $(".btn-friday").css("background-color", "");
+                } else {
+                    fridaySelected = true;
+                    $(".btn-friday").css("background-color", "#5bba47");
+                }
+            });
+
+            $(".btn-saturday").click(function (e) {
+                if (saturdaySelected) {
+                    saturdaySelected = false;
+                    $(".btn-saturday").css("background-color", "");
+                } else {
+                    saturdaySelected = true;
+                    $(".btn-saturday").css("background-color", "#5bba47");
+                }
+            });
+
+            $(".btn-sunday").click(function (e) {
+                if (sundaySelected) {
+                    sundaySelected = false;
+                    $(".btn-sunday").css("background-color", "");
+                } else {
+                    sundaySelected = true;
+                    $(".btn-sunday").css("background-color", "#5bba47");
+                }
+            });
+
+            $("#btn-create-session-modal").click(function (e) {
+                (function ($) {
+                    if (performPhase1Validation()) {
+                        $("#create-session-modal").modal('hide');
+                        $("#create-session-modal-2").modal('show');
+                    }
+                })(jQuery);
+            });
+
+            $("#btn-create-session-modal-2").click(function (e) {
+                (function ($) {
+                    if (performPhase2Validation()) {
+                        $("#create-session-modal-2").modal('hide');
+                        $("#create-session-modal-3").modal('show');
+                    }
+                })(jQuery);
+            });
+
+            $("#btn-save-session-details").click(function (e) {
+                (function ($) {
+                    if (!isVideoSelected && !isAudioSelected && !isTelephoneSelected && !isChatSelected && !isFaceToFaceSelected) {
+                        toastr.warning("Please select a session venue/mode");
+                        return;
+                    } else {
+                        if (performPhase3Validation()) {
+                            if (isVideoSelected) {
+                                sessionVenues += "Video , ";
+                            }
+                            if (isAudioSelected) {
+                                sessionVenues += "Audio , ";
+                            }
+                            if (isTelephoneSelected) {
+                                sessionVenues += "Telephone , ";
+                            }
+                            if (isChatSelected) {
+                                sessionVenues += "Chat , ";
+                            }
+                            if (isFaceToFaceSelected) {
+                                sessionVenues += "Face-to-Face  , ";
+                            }
+                            saveTherapySession();
+                        }
+                    }
+                })(jQuery);
+            });
+        }
+
+        function performPhase1Validation() {
+            sessionType = $("#spinner-session-type :selected").text();
+            sessionDuration = $("#session-duration").val();
+            sessionBreaks = $("#session-breaks").val();
+            sessionPrice = $("#session-cost").val();
+
+            if (sessionType == "Select Session Type") {
+                toastr.warning("Please select the session type!");
+                return false;
+            }
+
+            if (sessionDuration == "") {
+                toastr.warning("Please enter the session duration!");
+                return false;
+            }
+
+            if (sessionBreaks == "") {
+                toastr.warning("Please enter the length of breaks between !");
+                return false;
+            }
+
+            if (sessionPrice == "") {
+                toastr.warning("Please enter the session price!");
+                return false;
+            }
+
+            if (mondaySelected) {
+                var mondayStartTime = $("#monday-start-time").text();
+                var mondayEndTime = $("#monday-end-time").text();
+                mondayTimings = mondayStartTime + "-" + mondayEndTime;
+
+                if (mondayStartTime == "--:--") {
+                    toastr.warning("Please pick the starting time for Monday");
+                    return false;
+                }
+
+                if (mondayEndTime == "--:--") {
+                    toastr.warning("Please pick the end time for Monday");
+                    return false;
+                }
+            }
+
+            if (tuesdaySelected) {
+                var tuesdayStartTime = $("#tuesday-start-time").text();
+                var tuesdayEndTime = $("#tuesday-end-time").text();
+                tuesdayTimings = tuesdayStartTime + "-" + tuesdayEndTime;
+
+                if (tuesdayStartTime == "--:--") {
+                    toastr.warning("Please pick the starting time for tuesday");
+                    return false;
+                }
+
+                if (tuesdayEndTime == "--:--") {
+                    toastr.warning("Please pick the end time for tuesday");
+                    return false;
+                }
+            }
+
+            if (wednesdaySelected) {
+                var wednesdayStartTime = $("#wednesday-start-time").text();
+                var wednesdayEndTime = $("#wednesday-end-time").text();
+                wednesdayTimings = wednesdayStartTime + "-" + wednesdayEndTime;
+
+                if (wednesdayStartTime == "--:--") {
+                    toastr.warning("Please pick the starting time for wednesday");
+                    return false;
+                }
+
+                if (wednesdayEndTime == "--:--") {
+                    toastr.warning("Please pick the end time for wednesday");
+                    return false;
+                }
+            }
+
+            if (wednesdaySelected) {
+                var wednesdayStartTime = $("#wednesday-start-time").text();
+                var wednesdayEndTime = $("#wednesday-end-time").text();
+                wednesdayTimings = wednesdayStartTime + "-" + wednesdayEndTime;
+
+                if (wednesdayStartTime == "--:--") {
+                    toastr.warning("Please pick the starting time for wednesday");
+                    return false;
+                }
+
+                if (wednesdayEndTime == "--:--") {
+                    toastr.warning("Please pick the end time for wednesday");
+                    return false;
+                }
+            }
+
+            if (thursdaySelected) {
+                var thursdayStartTime = $("#thursday-start-time").text();
+                var thursdayEndTime = $("#thursday-end-time").text();
+                thursdayTimings = thursdayStartTime + "-" + thursdayEndTime;
+
+                if (thursdayStartTime == "--:--") {
+                    toastr.warning("Please pick the starting time for thursday");
+                    return false;
+                }
+
+                if (thursdayEndTime == "--:--") {
+                    toastr.warning("Please pick the end time for thursday");
+                    return false;
+                }
+            }
+
+            if (fridaySelected) {
+                var fridayStartTime = $("#friday-start-time").text();
+                var fridayEndTime = $("#friday-end-time").text();
+                fridayTimings = fridayStartTime + "-" + fridayEndTime;
+
+                if (fridayStartTime == "--:--") {
+                    toastr.warning("Please pick the starting time for friday");
+                    return false;
+                }
+
+                if (fridayEndTime == "--:--") {
+                    toastr.warning("Please pick the end time for friday");
+                    return false;
+                }
+            }
+
+            if (saturdaySelected) {
+                var saturdayStartTime = $("#saturday-start-time").text();
+                var saturdayEndTime = $("#saturday-end-time").text();
+                saturdayTimings = saturdayStartTime + "-" + saturdayEndTime;
+
+                if (saturdayStartTime == "--:--") {
+                    toastr.warning("Please pick the starting time for saturday");
+                    return false;
+                }
+
+                if (saturdayEndTime == "--:--") {
+                    toastr.warning("Please pick the end time for saturday");
+                    return false;
+                }
+            }
+
+            if (sundaySelected) {
+                var sundayStartTime = $("#sunday-start-time").text();
+                var sundayEndTime = $("#sunday-end-time").text();
+                sundayTimings = sundayStartTime + "-" + sundayEndTime;
+
+                if (sundayStartTime == "--:--") {
+                    toastr.warning("Please pick the starting time for sunday");
+                    return false;
+                }
+
+                if (sundayEndTime == "--:--") {
+                    toastr.warning("Please pick the end time for sunday");
+                    return false;
+                }
+            }
+
+            if (!mondaySelected && !tuesdaySelected && !wednesdaySelected && !thursdaySelected && !fridaySelected && !saturdaySelected
+                && !sundaySelected) {
+                toastr.warning("You must be available on at least one day of the week");
+                return false;
+            }
+
+            return true;
+        }
+
+        function performPhase2Validation() {
+            futureBookings = $("#future-booking-duration").val();
+            sessionSeries = $("#sessions-series").val();
+
+            if (futureBookings == "") {
+                toastr.warning("Please input the number of months for future booking!");
+                return false;
+            }
+
+            if (isSeriesofSessions && sessionSeries == "") {
+                toastr.warning("Please input the number of session!");
+                return false;
+            }
+
+            return true;
+        }
+
+        function performPhase3Validation() {
+            if (futureBookings == "") {
+                toastr.warning("Please input the number of months for future booking!");
+                return false;
+            }
+
+            if (isSeriesofSessions && sessionSeries == "") {
+                toastr.warning("Please input the number of session!");
+                return false;
+            }
+
+            return true;
+        }
+
+        function saveTherapySession() {
+            var therapyPayload = {
+                Data: {
+                    lvl: "1",
+                    sessionType: sessionType,
+                    sessionDuration: sessionDuration,
+                    sessionBreak: sessionBreaks,
+                    sessionPrice: sessionPrice,
+                    mondayTimings: mondayTimings,
+                    tuesdayTimings: tuesdayTimings,
+                    wednesdayTimings: wednesdayTimings,
+                    thursdayTimings: thursdayTimings,
+                    fridayTimings: fridayTimings,
+                    saturdayTimings: saturdayTimings,
+                    sundayTimings: sundayTimings,
+                    futureBookings: futureBookings,
+                    bookingMode: bookingMode,
+                    attendeesAllowed: isAttendeesAllowed,
+                    diffPayeeAllowed: isDiffPayeeAllowed,
+                    isSeriesOfSessions: isSeriesofSessions,
+                    sessionSeries: sessionSeries,
+                    sessionVenues: sessionVenues,
+                    isRecordingAllowed: isRecordingAllowed,
+                    offeredBy: email
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/therapy-session.php",
+                type: "POST",
+                data: therapyPayload,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code === "00") {
+                    toastr.success(response.desc);
+                    location.reload();
+                } else {
+                    toastr.error(response.desc);
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        function isNumber(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 31 && charCode < 48) || charCode > 57) {
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>

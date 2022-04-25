@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Contract Applications</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+
+    <!-- Date Picker CSS -->
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+
+    <!-- Toastr CSS -->
+    <link href="css/toastr.css" rel="stylesheet" />
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2"> <a href=""><span class="back-span-top"><i
+                                                    class="fas fa-arrow-left"></i></span></a>
+                                        <h5 class="select-suv-h5 mb-4">My
+                                            <label>Contract Applications</label>
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 pt-2 text-right display-none-all">
+                                        <div class="search-area-top search-dasboad-top">
+                                            <input class="form-control input-search" type="text"
+                                                placeholder="Search for Contract" name="">
+                                            <button class="btn btn-search-icon"><img src="images/search-icon.png"
+                                                    alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-2 mr-0 ml-0">
+
+                                    <div class="col-lg-12 col-sm-12 pl-0">
+                                        <div class="client-record-table">
+                                            <h3>Contracts</h3>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="text-center">Contract ID</th>
+                                                        <th class="text-center">Applied By</th>
+                                                        <th class="text-center">Applied On</th>
+                                                        <th class="text-center">Invoice Contact</th>
+                                                        <th class="display-none-all text-center">Contact Number</th>
+                                                        <th class="display-none-all text-center">Email
+                                                        </th>
+                                                        <th class="display-none-all text-center">--</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end container-fluid -->
+        <!------------------- Contract Details Modal  ----------------------->
+        <div class="modal fade" id="contract-details-modal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content modal-content-scroll">
+                    <div class="modal-body">
+                        <h4 class="modal-title profile-title-modal p-2">Contract Application</h4>
+                        <div class="step-message-modal">
+                            <p><span>1</span>Applicant Details</p>
+                        </div>
+                        <button type="button" class="close close-custom" data-dismiss="modal" aria-label="Close"> <i
+                                class="fas fa-arrow-left"></i> </button>
+                        <section class="multistep-area pt-5">
+                            <div class="col-md-12 mt-2 pt-1 pl-0">
+                                <label class="pl-3 mb-3 modal-label-title">Applicant Information</label>
+                                <div class="row full-width mr-0">
+                                    <div class="col-md-6 mt-2 pl-4 pr-1 pr0-responsive-modal pl-responsive-modal16">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Applied-On: </p>
+                                            </div>
+                                            <p id="applied-on"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width mr-0">
+                                    <div class="col-md-6 mt-2 pl-4 pr-1 pr0-responsive-modal pl-responsive-modal16">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Invoice Contact: </p>
+                                            </div>
+                                            <p id="invoice-contact"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width mr-0">
+                                    <div class="col-md-6 mt-2 pl-4 pr-1 pr0-responsive-modal pl-responsive-modal16">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Invoice Email: </p>
+                                            </div>
+                                            <p id="invoice-email"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width mr-0">
+                                    <div class="col-md-6 mt-2 pl-4 pr-1 pr0-responsive-modal pl-responsive-modal16">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Invoice Telephone: </p>
+                                            </div>
+                                            <p id="invoice-telephone"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width">
+                                    <div class="col-md-12 pl-4">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Invoice Contact Reference 1: </p>
+                                            </div>
+                                            <p id="invoice-contact-ref-1" style="text-align: justify;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width">
+                                    <div class="col-md-12 pl-4">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Invoice Contact Reference 2: </p>
+                                            </div>
+                                            <p id="invoice-contact-ref-2" style="text-align: justify;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width">
+                                    <div class="col-md-12 pl-4">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Invoice Address: </p>
+                                            </div>
+                                            <p id="invoice-address" style="text-align: justify;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width">
+                                    <div class="col-md-12 pl-4">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Purchase Order: </p>
+                                            </div>
+                                            <p id="purchase-order" style="text-align: justify;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width">
+                                    <div class="col-md-12 pl-4">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Communication Contact Name: </p>
+                                            </div>
+                                            <p id="comm-contact-name" style="text-align: justify;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width">
+                                    <div class="col-md-12 pl-4">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Communication Contact Email: </p>
+                                            </div>
+                                            <p id="comm-contact-email" style="text-align: justify;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row full-width">
+                                    <div class="col-md-12 pl-4">
+                                        <div class="col-auto">
+                                            <div class="input-group mb-2 text-heading">
+                                                <p>Communication Contact Telephone: </p>
+                                            </div>
+                                            <p id="comm-contact-telephone" style="text-align: justify;"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-md-12 mt-2 pt-1 pl-0 pr-4 pr-responsive-modal">
+                                    <label class="pl-3 mb-3 modal-label-title">Signed Contract Copy</label>
+                                    <div class="row full-width mr-0" id="layout-attachment">
+                                        <div
+                                            class="col-md-12 mt-2 pl-4 pr-1 pr0-responsive-modal pl-responsive-modal16">
+                                            <div class="col-auto">
+                                                <div class="input-group mb-2 text-heading layout-download-attachment">
+                                                    <i class="fas fa-file map-icon-modal"></i>
+                                                    <a href="#" id="attachment-url" style="padding-left: 3%;">
+                                                        <p>Download File</p>
+                                                    </a>
+                                                </div>
+                                                <div class="input-group mb-2 text-heading layout-no-attachment">
+                                                    <p>No attachment available!</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mt-5 modal-button-center">
+                                        <button id="btn-close-modal" type="button"
+                                            class="mt-5 float-right action-button btn-success btn-next-all-btn mr-4">Close</button>
+                                    </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.6.0.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+
+    <script type="text/javascript">
+        var attachmentUrl = "";
+        var attachmentExt = "";
+        var contractTitle = "";
+        var contractDesc = "";
+
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+                document.location.href = url;
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        function getContractApplications() {
+            var contractID = getParameterFromURL('id');
+            var contractPayload = {
+                Data: {
+                    id: contractID,
+                    lvl: 4
+                }
+            }
+
+            var request = $.ajax({
+                url: "services/api/contract.php",
+                type: "POST",
+                data: contractPayload,
+                dataType: "html"
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+
+                if (response.code == "00") {
+                    var a = response.data['contractApplications'];
+                    var table = $('.table');
+                    for (var i = 0; i < a.length; i++) {
+                        var contract = JSON.stringify(a[i]);
+                        contract = contract.replace("'", "");
+                        table.append(`<tbody id='table-list'>
+                            <tr>
+                                <td class="text-center">` + a[i]['contractID'] + `</td>
+                                <td class="text-center">` + a[i]['appliedBy'] + `</td>
+                                <td class="text-center">` + a[i]['appliedOn'] + `</td>
+                                <td class="text-center"><span class='name-td-table'>` + a[i]['invoiceContact'] + `</span></td>
+                                <td class='display-none-all text-center'>` + a[i]['invoiceTelephone'] + `</td>
+                                <td class='display-none-all text-center'><span
+                                    class='therapy-td-table'>` + a[i]['invoiceEmail'] + `</span></td>
+                                <td class='display-none-all text-center'><a href="javascript:clickEvent('`+ escape(contract) + `');"><i class="fas fa-eye setting-icon-top"></i></a></td>
+                            </tr>
+                        </tbody>`);
+                    }
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                toastr.error(textStatus);
+            });
+        }
+
+        function clickEvent(contractObj) {
+            var contract = JSON.parse(jQuery.trim(unescape(contractObj)));
+            $("#applied-on").text(contract['appliedOn']);
+            $("#invoice-contact").text(contract['invoiceContact']);
+            $("#invoice-email").text(contract['invoiceEmail']);
+            $("#invoice-telephone").text(contract['invoiceTelephone']);
+            $("#invoice-contact-ref-1").text(contract['invoiceContactRef1']);
+            $("#invoice-contact-ref-2").text(contract['invoiceContactRef2']);
+            $("#invoice-address").text(contract['invoiceAddress']);
+            $("#purchase-order").text(contract['purchaseOrder']);
+            $("#comm-contact-name").text(contract['communicationContactName']);
+            $("#comm-contact-email").text(contract['communicationContactEmail']);
+            $("#comm-contact-telephone").text(contract['communicationContactTelephone']);
+
+            if (contract['isDocumentAttached'] == 0) {
+                $('.layout-download-attachment').hide();
+            } else {
+                $('.layout-no-attachment').hide();
+                $('#attachment-url').click(function () { window.open('services/SignedContracts/' + contract['appliedBy'] + "/" + contract['id'] + "/" + contract['id'] + "." + contract['attachmentExtension']); return false; });
+            }
+
+            $("#contract-details-modal").modal("show");
+
+            $("#btn-close-modal").click(function () {
+                $("#contract-details-modal").modal("hide");
+            });
+        }
+
+        $(document).ready(function () {
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                } else {
+                    getContractApplications();
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+    </script>
+</body>
+
+</html>

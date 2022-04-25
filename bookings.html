@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bookings</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/custom.css" rel="stylesheet">
+
+    <!-- plugin CSS -->
+    <link href="css/plugin.css" rel="stylesheet">
+
+    <!-- responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Fontawesome CSS -->
+    <link href="fontawesome/css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='css/bootstrap-datepicker3.css'>
+</head>
+
+<body class="dashboard-bg">
+    <main role="main">
+
+        <!-- start  container-fluid -->
+        <div class="container-fluid p-0">
+            <div class="all-wrapper">
+                <div id="vertical-nav-tabs"></div>
+
+                <div class="clearfix"></div>
+                <div class="all-content">
+                    <div class="dashboard-main-wrapper">
+
+                        <div class="dasboard-top-header"></div>
+
+                        <div class="top-filter-area"></div>
+
+                        <div class="col-md-12 p-0">
+                            <div class="dashboard-middle-area">
+
+                                <div class="row mr-0">
+                                    <div class="col-md-6 col-sm-12 pt-2">
+                                        <span class="back-span-top" onclick="goBack()"><i
+                                                class="fas fa-arrow-left"></i></span>
+                                        <h5 class="select-suv-h5 mb-4">Bookings <label></label></h5>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="search-area-top search-dasboad-top">
+                                            <input class="form-control input-search" type="text"
+                                                placeholder="Search for Booking" name="">
+                                            <button class="btn btn-search-icon"><img src="images/search-icon.png"
+                                                    alt=""></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row pt-2 mr-0 ml-0 bookings-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-create-booking"><i class="fa fa-plus"></i></button>
+        <!-- end container-fluid -->
+    </main>
+
+
+    <!-- bootstrap -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- custom.js -->
+    <script src="js/custom.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+
+        $(".btn-create-booking").click(function (e) {
+            document.location.href = "therapists.html";
+            document.location.href = url;
+        });
+
+        //Log out
+        function logout() {
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 2,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                document.location.href = "login1.html";
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        //Get all Therapists
+        function getAllBookings() {
+            var bookingPayload = {
+                Data: {
+                    lvl: "2"
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/booking.php",
+                type: "POST",
+                data: bookingPayload,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                var response = JSON.parse(jQuery.trim(msg));
+                if (response.code == "00") {
+                    var a = response.data['bookings'];
+                    var parent = $(".bookings-list");
+                    if (a.length === 0) {
+                        parent.append("<h5'>No appointments/bookings are made yet! </h5>.");
+                        return;
+                    }
+                    for (var i = 0; i < a.length; i++) {
+                        console.log(a[i]['id']);
+                        var email = a[i]['email'];
+                        var therapistPicPath = a[i]['therapistEmail'];
+                        if (doesFileExist("services/images/profile_pictures/" + therapistPicPath + ".png")) {
+                            therapistPicPath = "user-avatar";
+                        }
+                        parent.append(`
+                                    <div class="col-lg-3 col-sm-6 pl-0">
+                                        <div class="profile-block-all">
+                                            <img class="supervisor-profile-pic" src=services/images/profile_pictures/${therapistPicPath}.png alt = "" >
+
+                                            <div class="supervisor-profile-block text-center">
+                                                <h4>`+ a[i]['therapistName'] + `</h4>
+                                                <p>Physical Therapist & Supervisor</p>
+                                                <p class="mt-2 pt-1">`+ a[i]['bookingDate'] + `</p>
+                                                <p class="pt-1">Booking Slot: `+ a[i]['startTime'] + " - " + a[i]['endTime'] + `</p>
+                                                <p class="pt-1 text-booking-status">`+ a[i]['bookingStatus'] + `</p>
+                                            </div>
+
+                                            <div class="col-md-12 col-sm-12 text-center pl-0 pr-0">
+                                        <a href="booking-detail.html?b_id=` + a[i]['id'] + `"><button
+                                                class="btn btn-success nominate-btn btn-sen-message mb-2">View
+                                                Booking Details</button></a>
+                                    </div>
+
+                                        </div>
+                                    </div>
+                        `);
+                    }
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        }
+
+        //Check if session is logged in
+        $(document).ready(function () {
+            $("#vertical-nav-tabs").load("navigation.html");
+            $(".top-filter-area").load("top-nav-bar.html");
+            $(".dasboard-top-header").load("search-bar-navigation.html");
+
+            var sessionData = {
+                Data: {
+                    email: "",
+                    lvl: "",
+                    act: 3,
+                },
+            };
+
+            var request = $.ajax({
+                url: "services/api/session.php",
+                type: "POST",
+                data: sessionData,
+                dataType: "html",
+            });
+
+            request.done(function (msg) {
+                if (msg == "") {
+                    document.location.href = "login1.html";
+                    document.location.href = url;
+                } else {
+                    getAllBookings();
+                }
+            });
+
+            request.fail(function (jqXHR, textStatus) {
+                console.log(textStatus);
+            });
+        });
+
+        function doesFileExist(urlToFile) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('HEAD', urlToFile, false);
+            xhr.send();
+
+            return xhr.status === 404;
+        }
+
+        $("#search-icon").click(function (e) {
+            window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+        });
+
+        $(".input-search").on('keyup', function (e) {
+            if (e.key === 'Enter' || e.keyCode === 13) {
+                window.open("search-therapist.html?query=" + $(".input-search").val(), '_blank');
+            }
+        });
+    </script>
+</body>
+
+</html>

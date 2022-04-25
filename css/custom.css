@@ -1,0 +1,545 @@
+/* Template:Template
+   Author:Template
+   Version: 1.1
+   Created: January 2021
+   Description: Master CSS file
+*/
+
+
+/**********************************
+    TABLE OF CONTENTS
+
+01.nav-header-custom
+02.landing-left-block
+03.signup-area-right
+04.login css
+05. 
+06.  
+07.  
+
+**********************************/
+
+
+/***** 01. General Styles *****/
+body {
+  padding: 0px;
+  font-family: Poppinsl;
+  background: #f8f9fd;
+}
+@font-face {
+  font-family: Poppinsb;
+  src: url(../font/Poppins-Bold.ttf);
+}
+@font-face {
+  font-family: Poppinsl;
+  src: url(../font/Poppins-Light.ttf);
+}
+.border-color-round{
+      border: solid 2px #5bba47;
+}
+.paddin-left-right-container {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+:focus {
+  outline: none;
+}
+.box-shadow-none-all{
+  box-shadow: none !important;
+}
+p {
+  font-size: 14px;
+}
+.font-size-12{
+ font-size: 12px !important; 
+}
+.padding-left-right-30{
+  padding-left: 30px; padding-right: 30px;
+}
+.margin-top-120{
+  margin-top: 120px !important;
+}
+.margin-top-160{
+  margin-top: 160px !important;
+}
+
+.flot-left {
+  float: left !important;
+}
+.flot-right {
+  float: right !important;
+}
+.full-width {
+  width: 100% !important;
+  float: left !important;
+}
+.text-white {
+  color: #fff;
+}
+.line-height-21{
+  line-height: 21px;
+}
+.form-control:focus {
+  box-shadow: none;
+}
+.btn.focus, .btn:focus {
+  box-shadow: none;
+}
+option {
+    font-size: 15px;
+}
+a:hover {
+  text-decoration: none;
+}
+.color-white {
+  color: #fff;
+}
+.color-green {
+  color: #5bba47;
+}
+.color-yellow {
+  color: #faa81d;
+}
+.error-color-email-pass i{
+  color: #ff4266 !important;
+}
+.invalid-text-for-email-pass {
+    color: #ff4266;
+    font-size: 10px;
+    padding-left: 15px;
+    padding-bottom: 6px;
+    width: 100%;
+    float: left;
+    font-family: Poppinsb;
+}
+/*=========================nav-header-custom===================================*/
+@media (min-width:991px) and (max-width:3000px) {
+.nav-header-custom .navbar-nav {
+  flex-direction: inherit;
+  text-align: right;
+  float: right;
+  font-family: Poppinsb;
+}
+.nav-header-custom .navbar-collapse {
+  display: block !important;
+}
+}
+.logo-top img {
+  width: 164px;
+  bottom: 3px;
+  position: relative;
+}
+.nav-header-custom .navbar-nav {
+  font-family: Poppinsb;
+}
+.dropdown-toggle-custom::after {
+  width: 8px;
+  height: 8px;
+  border-left: solid 2px #5bba47;
+  border-top: solid 2px #5bba47;
+  border-right: solid 1px transparent;
+  transform: rotate(-135deg);
+  top: 1px;
+  position: relative;
+}
+.dropdown-menu-custom.show {
+  display: block;
+  border: solid 1px #5bba47;
+  font-size: 12px;
+}
+.nav-header-custom .navbar-nav .nav-link {
+  color: #36395b;
+  font-size: 14px;
+  padding-left: 1.7rem;
+}
+.nav-header-custom .navbar-nav .nav-link:hover {
+  color: #5bba47;
+}
+.margin-right-login {
+  margin-left: 4em;
+}
+.margin-right-login button {
+  background: #5bba47;
+  border-color: #5bba47;
+  color: #fff;
+  font-family: Poppinsl;
+  border-radius: 40px;
+  padding: 3px 18px;
+  top: 4px;
+  position: relative;
+}
+
+
+/*========================landing-left-block=======================*/
+.landing-left-block h3, h1{
+ font-family: Poppinsb;
+}
+
+.landing-left-block h3{
+font-size: 30px;
+}
+.landing-left-block h1{
+font-size: 42px;
+}
+
+.image-block-left{
+  width: 100%;
+    position: relative;
+    float: left;
+    padding-top: 28px;
+}
+.banner-img-left{
+  width: 80%;
+  float: left;position: relative;
+}
+.banner-left-img{
+  width: 100%;
+}
+.banner-details-left{
+  position: absolute;
+    bottom: 10%;
+    right: -10%;
+    width: 41%;
+    font-family: Poppinsb;
+   
+}
+.banner-details-left span {
+    width: 16px;
+    float: left;
+    right: 9px;
+    position: relative;
+    bottom: 6px;
+}
+
+
+.banner-details-left span img{
+    width: 16px;
+}
+.banner-details-left p {
+    float: left;
+    width: 92%;
+    /* border: solid; */
+    color: #505471;
+    font-size: 12px;
+    font-style: italic;
+}
+.video-block {
+    width: 134px;
+    height: 134px;
+    position: absolute;
+    top: 0px;
+    right: 17%;
+    font-family: Poppinsb;
+}
+
+.video-block img{
+  width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 100px;
+}
+span.video-span {
+    position: absolute;
+    width: 100%;
+    left: 22px;
+    bottom: 29px;
+    color: #fff;
+    font-size: 13px;
+}
+
+/*signup-area-right*/
+.signup-area-right {
+    background: #fff;
+    padding-left: 30px;
+     padding-right: 30px;
+    padding-top: 30px;
+     padding-bottom: 16px;
+    border-radius: 12px;
+}
+.signup-area-right h3{
+  font-family: Poppinsb;
+  font-size: 20px;
+}
+
+.signup-area-right p{
+  color: #797b8c;
+  font-size: 13px;
+}
+.signup-area-right p a{
+  font-size: 12px;
+   font-family: Poppinsb;
+}
+/*.btn-signup-right{
+    padding: 3px 7px;
+    font-size: 13px;
+    width: 46%
+}*/
+.btn-signup-right {
+   padding: 12px 3px;
+    /* font-size: 11px; */
+    font-size: 10.5px;
+    border-radius: 7px;
+    color: #36395b;
+    width: 46%;
+    border-color: #5bba47;
+    letter-spacing: -.3px;
+    /* font-weight: bold; */
+    font-family: Poppinsb;
+}
+.btn-signup-right:hover{
+  background: transparent;
+  color: #3d982a;
+}
+.btn-signup-right img {
+    width: 16px;
+    right: 4px;
+    position: relative;
+    bottom: 1px;
+}
+
+.or-title-p {
+    padding-top: 26px;
+    font-size: 15px;
+}
+.input-login-area {
+  background: #fff;
+  box-shadow: 0px 2px 8px #dcdcdc;
+  padding: 0px;
+  border-radius: 40px;
+  margin-bottom: 12px;
+  width: 94%; margin-left: 3%;
+  float: left;
+  position: relative;
+  z-index: 99;
+}
+.input-login-area .input-group-text{
+  border:0px; background: transparent;
+}
+.input-login-area .form-control{
+border: 0px;
+background: transparent;
+height: 35px;
+top:5px; position: relative; float: left;
+font-size: 15px;
+
+
+}
+.input-login-area i {
+    color: #5bba47;
+}
+.input-login-area .input-group-text{
+  padding: 8px;
+    top: 5px;
+    position: relative;
+    left: 6px;
+}
+span.hidden-password {
+    position: absolute;
+    right: 16px;
+    top: 11px;
+    cursor: pointer;
+    z-index: 99;
+}
+span.hidden-password i{
+    color: #7f7f7f;
+}
+.create-acc-btn {
+    background: #5bba47;
+    border-color: #5bba47;
+    border-radius: 40px;
+    padding: 5px 15px;
+    margin-top: 14px;
+   min-width: 126px;
+}
+p.p-all-title {
+    color: #36395b;
+    margin-top: 13px;
+    font-size: 11px;
+    font-family: Poppinsb;
+}
+
+p.p-all-title a{
+    color: #5bba47;
+}
+
+.p-by-title {
+    color: #8c8fa2;
+    margin-top: 13px;
+    
+}
+
+.p-by-title a{
+    color: #5bba47;
+}
+
+/*2-step-authentication*/
+.country-icon {
+        border-right: solid 1px #f2f2f5;
+    padding-right: 7px;bottom:3px;
+    position: relative;
+}
+.country-icon img {
+    width: 20px;
+}
+
+.select-appearance .form-control{
+  margin: 0;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;
+    position: relative;
+    z-index: 9; color: #9a9cad;
+    cursor:pointer;
+}
+
+.select-appearance:after {
+    content:url(../images/select-app.png);
+    position: absolute;
+    right: 3px;
+    top: 2.5px;
+
+}
+.input-login-area .input-group {
+    height: 35px;
+}
+.mobile-select-icon {
+   padding-right: 17px;
+    top: -3px;
+    position: relative;
+}
+.mobile-select-icon img {
+    width: 11px;
+    left: 5px;
+    position: relative;
+}
+.select-appearance2{
+  position: relative;
+    width: 18%;
+}
+.mobile-country-code {
+    flex: initial !important;
+    background: #dcf2e4 !important;
+    height: 43px !important;
+    top: 0px !important;
+    position: relative;
+    border-radius: 0px;
+    width: 100% !important;
+    padding: 0px;
+    padding-left:7px;
+    font-family: Poppinsb;
+    font-size: 12.5px !important;
+    padding-top: 6px;
+}
+.mobile-country-code{
+  margin: 0;
+    outline:none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+    appearance:none;cursor:pointer;
+	background:#dcf2e4  url(../images/arrow-se.png)  no-repeat right center !important;
+  background-position-y: 20px !important;
+    background-position-x: 35px !important;
+}
+/*.select-appearance2:after {
+    content:url(../images/arrow-se.png);
+    position: absolute;
+   right:10px;
+    top: 10px;
+
+}*/
+
+ .h5-latest {
+    font-family: Poppinsb;
+    font-size: 14px;
+}
+p.mus-p-title {
+    width: 100%;
+    float: left;
+    margin-top: 11px;
+}
+.mobile-number-title{
+  font-family: Poppinsb; color: #5bba47;
+}
+.input-verification{
+  width: 100%;
+    border: 0px;
+    text-align: center;
+    border-bottom: solid #302f2f;
+    box-shadow: none;
+    font-family: Poppinsb;
+    font-size: 21px;
+}
+.verification-table td {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.h6-step-veri{
+  width: 100%; float: left;font-family: Poppinsb;font-size: 13px;
+}
+.link-resend-code {
+    color: #000;
+}
+.link-resend-code a{
+  color: #5bba47;
+}
+/*===============login css=================*/
+.h6-login-using {
+    font-size: 12px;font-family: Poppinsb;
+}
+.h6-login-using a {
+    color: #5bba47;
+}
+
+.forgot-pass-span {
+    font-family: Poppinsl !important;
+    width: 100%;
+    float: left;
+    font-size: 13px;
+}
+.forgot-pass-span a{
+  color: #9d9faf;
+}
+
+.email-veri-icon {
+    width: 90px;
+    margin: auto;
+    position: relative;
+}
+
+.email-veri-icon img{
+    width: 90px;
+}
+.mes-notification-span {
+    width: 22px;
+    height: 22px;
+    background: #3760fe;
+    display: block;
+    position: absolute;
+    right: -6px;
+    color: #fff;
+    font-size: 20px;
+    font-family: Poppinsb;
+    border-radius: 40px;
+    top: -10px;
+    font-size: 10px;
+    line-height: 25px;
+}
+
+ .h5-confirm-mail {
+    font-family: Poppinsb;
+    font-size: 12.5px; color: #424565;
+}
+.span-conf{
+  color: #fab134;
+}
+.span-mail-address{
+  color: #61bc4e;
+  width: 100%; float: left;
+}
+.succsess-icon {
+    width: 60px;
+}
